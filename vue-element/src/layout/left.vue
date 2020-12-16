@@ -1,6 +1,6 @@
 <template>
-    <div style="height:100%">
-        <el-menu background-color='rgb(48, 65, 86)' text-color='rgb(191, 203, 217)' :collapse="isCollapse">
+    <div class="leftbox" style="height:100%">
+        <el-menu :default-active='activeIndex' background-color='rgb(48, 65, 86)' @select='handleSelect' text-color='rgb(191, 203, 217)' active-text-color='#409EFF' :collapse="isCollapse">
             <menu-tree :menuData='dynamicRouter'></menu-tree>
         </el-menu>
     </div>
@@ -11,8 +11,14 @@ import MenuTree from './menuTree.vue'
   export default {
     data() {
       return {
-          dynamicRouter:dynamicRouter
+          dynamicRouter:dynamicRouter,
+          activeIndex:''
       };
+    },
+    watch: {
+      // $route(e){
+      //   this.handleSelect(e.name)
+      // }
     },
     components:{
         MenuTree
@@ -23,26 +29,25 @@ import MenuTree from './menuTree.vue'
         }
     },
     mounted(){
-        console.log(dynamicRouter)
+      this.handleSelect(this.$route.name)
     },
     methods: {
-        child(e){
-            if(e.children.length===1){
-                return true
-            }
-        },
+      handleSelect(e){
+        this.activeIndex = e
+      },
     }
   }
 </script>
+
 <style >
-.el-menu-item:hover{  
+
+.leftbox .el-menu-item:hover{  
   outline: 0 !important;  
   background: #001528 !important;  
 }  
-.el-menu-item.is-active {  
-  color: #fff !important;  
+/* .el-menu-item.is-active {  
   background: #001528 !important;  
-}  
+}   */
 .el-submenu__title:focus, .el-submenu__title:hover{  
   outline: 0 !important;  
   color: #409EFF !important;  
@@ -52,4 +57,8 @@ import MenuTree from './menuTree.vue'
     border: 0;
     height: 100%;
 }
+.el-submenu .el-menu-item{
+  background-color: #1f2d3d !important
+}
+
 </style>

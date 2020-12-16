@@ -10,8 +10,38 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    // proxyTable: {},
+    proxyTable: { // 注意施proxy，不能proxyTable
+      '/sysadmin': { // 对应.env.development里的VUE_APP_BASE_API
+        target: 'http://192.168.0.151:22099',// 需要跨域的地址
+        // target: 'http://127.0.0.1:8888',// 需要跨域的地址
+        changeOrigin: true,
+        pathRewrite: {
+          '^sysadmin': ''
+        }
+      },
+      '/f':{
+        target: 'http://127.0.0.1:8888',// 需要跨域的地址
+        changeOrigin: true,
+        pathRewrite: {
+          '^f': ''
+        }
+      },
+      '/goodsAction':{
+        target: 'http://127.0.0.1:8888',// 需要跨域的地址
+        changeOrigin: true,
+        pathRewrite: {
+          '^goodsAction': ''
+        }
+      },
+      '/Servlet':{
+        target: 'http://192.168.0.35:8080',// 需要跨域的地址
+        changeOrigin: true,
+        pathRewrite: {
+          '^Servlet': ''
+        }
+      }
+    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

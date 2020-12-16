@@ -21,24 +21,24 @@ export const dynamicRouter = [
       path: 'home',
       name: '首页',
       component: () => import('@/components/HelloWorld'),
-      meta: { title: '首页', icon: 'el-icon-menu' }
+      meta: { title: '首页', icon: 'peoples' }
     }]
   },
   {
     path: '/system',
     component: layout,
     redirect: '/system',
-    meta: { title: '管理', icon: 'el-icon-menu' },
+    meta: { title: '管理', icon: 'chart' },
     children: [{
         path: 'user',
         name: '用户',
         component: () => import('@/views/user/index'),
-        meta: { title: '首页', icon: 'el-icon-menu' }
+        meta: { title: '首页', icon: 'system' }
       },{
         path: 'role',
         name: '角色管理',
         component: () => import('@/views/role/index'),
-        meta: { title: '角色管理', icon: 'el-icon-menu' }
+        meta: { title: '角色管理', icon: 'icon' }
       },]
     },
 ]

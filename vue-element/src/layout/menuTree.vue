@@ -2,17 +2,20 @@
     <div>
         <div v-for="menu in menuData" :key="menu.name">
             <el-menu-item v-if='menu.children===undefined' :index='menu.name' @click="change(menu.path)">
-                <i :class="menu.meta.icon"></i>
+                <svg-icon :icon-class="menu.meta.icon"></svg-icon>
+                <!-- <i :class="menu.meta.icon"></i> -->
                 <span slot="title">{{menu.name}}</span>
             </el-menu-item>
             <el-menu-item v-else-if='menu.children.length===1' :index='menu.children[0].name' @click="change(menu.path)">
-                <i :class="menu.children[0].meta.icon"></i>
+                <svg-icon :icon-class="menu.children[0].meta.icon"></svg-icon>
+                <!-- <i :class="menu.children[0].meta.icon"></i> -->
                 <span slot="title">{{menu.children[0].name}}</span>
             </el-menu-item>
             <el-submenu  v-else :index='menu.path' @click="change(menu.path)">
                 <template slot="title">
-                    <i :class="menu.meta.icon"></i>
-                    <span slot="title">{{menu.meta.title}}</span>
+                    <svg-icon :icon-class="menu.meta.icon"></svg-icon>
+                    <!-- <i  :class="menu.meta.icon"></i> -->
+                    <span v-if="!isCollapse" slot="title">{{menu.meta.title}}</span>
                 </template>
                 <menu-tree :menuData="menu.children"></menu-tree>
             </el-submenu>
@@ -29,8 +32,12 @@ export default {
             dynamicRouter:dynamicRouter
         }
     },
+    computed:{
+        isCollapse(){
+            return this.$store.state.layout.isCollapse
+        }
+    },
     mounted(){
-        console.log(this.menuData)
     },
     methods:{
         change(e){
@@ -57,10 +64,14 @@ export default {
                 }      
             }
             fun(p)
-            console.log(route)
             this.$router.push({ path: route })
         }
     }
     
 }
 </script>
+<style>
+.el-icon-arrow-right{
+  display: none;
+}
+</style>

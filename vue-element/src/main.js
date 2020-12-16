@@ -9,7 +9,7 @@ import '@/permission'
 import "./assets/style/index.scss"
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-
+import '@/icons' // icon
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);

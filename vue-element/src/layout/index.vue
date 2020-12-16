@@ -35,8 +35,9 @@ export default {
         isCollapse:(e)=>{
             console.log(e)
             if(e===true){
-                document.getElementsByClassName('left')[0].style.setProperty('--width', '64px');
-                document.getElementsByClassName('right')[0].style.setProperty('--width', '64px');
+                document.getElementsByClassName('left')[0].style.setProperty('--width', '54px');
+                document.getElementsByClassName('right')[0].style.setProperty('--width', '54px');
+                document.getElementsByClassName('el-submenu__icon-arrow')[0].style.display = 'none'
             }else{
                 document.getElementsByClassName('left')[0].style.setProperty('--width', '220px');
                 document.getElementsByClassName('right')[0].style.setProperty('--width', '220px');
@@ -74,6 +75,7 @@ $width:220px;
     // background-color: rgb(48, 65, 86);
     float: left;
 }
+
 .right{
     width:calc(100% - var(--width, 220px));
     height: 100%;
@@ -81,11 +83,10 @@ $width:220px;
 }
 .top{
     width: 100%;
-    height: 54px;
-    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+    
 }
 .box{
     width: 100%;
-    height: calc(100% - 54px);
+    height: calc(100% - 94px);
 }
 </style>
